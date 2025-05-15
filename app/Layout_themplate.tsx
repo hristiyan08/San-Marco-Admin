@@ -3,7 +3,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ArchiveBoxIcon , DocumentTextIcon } from '@heroicons/react/24/outline'
-
+import {getCurrentProfileInformation} from '../app/data/DataInfo';
 const user = {
     name: 'Tom Cook',
     email: 'tom@example.com',
@@ -32,8 +32,8 @@ function classNames(...classes) {
 
 
 
-
-export default function Layout_themplate({ children, title, location }: LayoutProps) {
+const userData = await getCurrentProfileInformation();
+export default function Layout_themplate({ children, title }: LayoutProps) {
     return (
         <div className="min-h-full">
             <Disclosure as="nav" className="bg-gray-900">
@@ -164,7 +164,7 @@ export default function Layout_themplate({ children, title, location }: LayoutPr
             <header className="bg-white shadow-sm">
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex row gap-220">
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">{title}</h1>
-                    <h1 className="text-2xl  tracking-tight text-gray-900">{location}</h1>
+                    <h1 className="text-xl  tracking-tight text-gray-900">{userData.location}</h1>
                 </div>
             </header>
             <main>

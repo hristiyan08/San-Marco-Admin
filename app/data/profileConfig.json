@@ -1,4 +1,4 @@
 {
   "profilePrompts": ["Име", "Имейл", "Локация", "Управление"],
-  "profileKeys": ["name", "email", "location"]
+  "profileKeys": ["name",  "email", "location"]
 }

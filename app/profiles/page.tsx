@@ -1,7 +1,7 @@
 'use client'
 import Layout_themplate from "@/app/Layout_themplate";
 import config from "../data/profileConfig.json";
-import getProfiles from './action';
+import {getAllProfiles} from '../data/DataInfo';
 import { useEffect, useState } from 'react';
 import PasswordRecoveryHandler from './passwordReset';
 const profilePrompts = config.profilePrompts;
@@ -13,7 +13,7 @@ export default function Example() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await getProfiles();
+            const data = await getAllProfiles();
             setProfiles(data);
         };
 
