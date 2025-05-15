@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import PasswordRecoveryHandler from './passwordReset';
 const profilePrompts = config.profilePrompts;
 const profileKeys = config.profileKeys;
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 export default function Example() {
     const [profiles, setProfiles] = useState<any[]>([]);
 
@@ -20,14 +22,14 @@ export default function Example() {
 
     return (
         <Layout_themplate title="Акаунти">
-            <div className="w-full flex justify-end mb-2">
+            <div className="w-full flex justify-end mb-3">
                 <button className="bg-gray-900 p-2 text-white rounded-md cursor-pointer hover:bg-gray-800" onClick={()=> window.open('/addAccount', '_blank', 'width=500,height=700')}>
                     Добавяне на служител
                 </button>
             </div>
 
             <div className="w-full">
-                <h3 className="text-lg font-semibold ml-3 text-slate-800">Свързани акаунти и техните функции</h3>
+                <h3 className="text-lg font-semibold ml-3 text-slate-800">Свързани акаунти</h3>
                 <p className="text-slate-500 mb-5 ml-3">От тук може да контролирате, добавяте, редактирате и премахвате служебните акаунти.</p>
             </div>
 
