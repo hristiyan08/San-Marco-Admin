@@ -34,3 +34,19 @@ export async function getCurrentProfileInformation(){
 
     return data;
 }
+export async function getProducts(){
+
+
+    const { data, error } = await supabase
+        .from('products')
+        .select('*')
+
+    if (error) {
+        console.error('Грешка при извличане на профили:', error.message);
+        return [];
+    }
+
+
+
+    return data;
+}

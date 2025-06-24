@@ -1,4 +1,6 @@
 {
   "profilePrompts": ["Име", "Имейл", "Локация", "Управление"],
-  "profileKeys": ["name",  "email", "location"]
+  "profileKeys": ["name",  "email", "location"],
+  "productPrompts": ["ID","Име на продукт", "Тип", "Количество - Полатава 3Б", "Количество - Христо Ботев 64", "Единична цена - в лв."],
+  "productKeys": ["id","name", "type", "quantity_poltava", "quantitiy_hristo_botev", "single_price"]
 }

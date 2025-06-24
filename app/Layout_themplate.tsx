@@ -42,7 +42,7 @@ export default function Layout_themplate({ children, title }: LayoutProps) {
                     <div className="flex h-20 items-center justify-between pt-2">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                                <h1 className="text-white text-3xl font-bold cursor-pointer" onClick={() => window.location.href='..'}>San Marco VT</h1>
+                                <h1 className="text-white text-3xl font-bold cursor-pointer" onClick={() => window.location.href='..'}>San Marco</h1>
                             </div>
                             <div className="hidden md:block">
                                 <div className="ml-60 flex items-baseline space-x-4">
@@ -164,7 +164,7 @@ export default function Layout_themplate({ children, title }: LayoutProps) {
             <header className="bg-white shadow-sm">
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex row gap-220">
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">{title}</h1>
-                    <h1 className="text-xl  tracking-tight text-gray-900">{userData.location}</h1>
+                    <h1 className="text-xl  tracking-tight text-gray-900"> {userData.location}</h1>
                 </div>
             </header>
             <main>
@@ -177,7 +177,7 @@ export default function Layout_themplate({ children, title }: LayoutProps) {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
                         <div className="max-w-xl lg:max-w-lg">
-                            <h2 className="text-4xl font-bold tracking-tight text-white ">San Marco VT</h2>
+                            <h2 className="text-4xl font-bold tracking-tight text-white ">San Marco</h2>
                             <p className="mt-4 text-lg text-gray-300">
                                 Админ система за направа на стокови разписки и фактури, управление на складова програма.
                             </p>
