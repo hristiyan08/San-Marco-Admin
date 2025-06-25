@@ -33,7 +33,7 @@ function classNames(...classes) {
 
 
 const userData = await getCurrentProfileInformation();
-export default function Layout_themplate({ children, title }: LayoutProps) {
+export default function Layout_template({ children, title }: LayoutProps) {
     return (
         <div className="min-h-full">
             <Disclosure as="nav" className="bg-gray-900">

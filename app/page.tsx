@@ -1,5 +1,5 @@
 'use client'
-import Layout from './Layout_themplate'
+import Layout from './Layout_template'
 
 export default function Home() {
   return (

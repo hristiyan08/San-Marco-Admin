@@ -1,5 +1,5 @@
 'use client'
-import Layout_themplate from "@/app/Layout_themplate";
+import Layout_template from "@/app/Layout_template";
 import config from "@/app/data/profileConfig.json";
 import {useEffect, useState} from "react";
 import { getProducts} from "@/app/data/DataInfo";
@@ -17,16 +17,43 @@ export default function Products() {
 
         fetchData();
     }, []);
-    return (
-        <Layout_themplate title="Продукти">
-            <div className="w-full flex justify-end mb-3">
-                <select className="bg-gray-900 p-2 text-white rounded-md cursor-pointer hover:bg-gray-800">
 
-                    <option>Избиране на опция</option>
-                    <option>Добавяне на продукт</option>
-                    <option>Трансфер на продукт</option>
-                    <option>Таблица със статистика</option>
+    const OpenMagicLink = (urlAddressToOpen) => {
+        const width = 500;
+        const height = 600;
+        const left = window.screenX + (window.innerWidth - width) / 2;
+        const top = window.screenY + (window.innerHeight - height) / 2;
+
+        window.open(
+            urlAddressToOpen,
+            '_blank',
+            `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+        );
+    };
+
+
+    return (
+        <Layout_template title="Продукти">
+            <div className="w-full flex justify-end mb-3">
+                <select
+                    className="bg-gray-900 p-2 text-white rounded-md cursor-pointer hover:bg-gray-800"
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        if (value === 'add') {
+                            OpenMagicLink('../products/addProduct');
+                        } else if (value === 'transfer') {
+                            alert('Трансфер на продукт'); // или каквото искаш
+                        } else if (value === 'stats') {
+                            alert('Статистика'); // или друг линк
+                        }
+                    }}
+                >
+                    <option value="">Избиране на опция</option>
+                    <option value="add">Добавяне на продукт</option>
+                    <option value="transfer">Трансфер на продукт</option>
+                    <option value="stats">Таблица със статистика</option>
                 </select>
+
             </div>
             <h1 className="text-2xl font-semibold">Таблица с налични продукти</h1>
 
@@ -58,6 +85,7 @@ export default function Products() {
             </div>
 
 
-        </Layout_themplate>
+        </Layout_template>
     )
+
 }
