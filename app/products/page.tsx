@@ -10,21 +10,7 @@ const productKeys = config.productKeys;
 export default function Products() {
     const [products, setProducts] = useState<any[]>([]);
 
-    const tableRef = useRef(null);
-    const handleDownload = async () => {
-        if (tableRef.current) {
-            const html2pdf = (await import('html2pdf.js')).default;
-            html2pdf()
-                .set({
-                    margin: 10,
-                    filename: 'table.pdf',
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                })
-                .from(tableRef.current)
-                .save();
-        }
-    };
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,9 +45,9 @@ export default function Products() {
                         if (value === 'add') {
                             OpenMagicLink('../products/addProduct');
                         } else if (value === 'transfer') {
-                            alert('Трансфер на продукт'); // или каквото искаш
+                            OpenMagicLink('../products/transferProduct');
                         } else if (value === 'stats') {
-                            handleDownload();
+
                         }
                     }}
                 >
@@ -75,12 +61,12 @@ export default function Products() {
             <h1 className="text-2xl font-semibold">Таблица с налични продукти</h1>
 
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-10" ref={tableRef}>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-10" >
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         {productPrompts.map((prompt) => (
-                            <th key={prompt} className="px-6 py-3" scope="col">{prompt}</th>
+                            <th key={prompt} className="px-6 py-3 text-gray-200" scope="col">{prompt}</th>
                         ))}
 
                     </tr>

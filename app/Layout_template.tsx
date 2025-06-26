@@ -162,9 +162,9 @@ export default function Layout_template({ children, title }: LayoutProps) {
             </Disclosure>
 
             <header className="bg-white shadow-sm">
-                <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex row gap-220">
-                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">{title}</h1>
-                    <h1 className="text-xl  tracking-tight text-gray-900"> {userData.location}</h1>
+                <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex row justify-between">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900">{title}</h1>
+                    <h1 className="text-2xl  tracking-tight text-gray-900"> {userData.location}</h1>
                 </div>
             </header>
             <main>
