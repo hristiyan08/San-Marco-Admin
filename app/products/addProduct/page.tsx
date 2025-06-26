@@ -19,10 +19,9 @@ export default function Example() {
     async function handleSubmit(e) {
         e.preventDefault();
         const supabase = createClient();
+
         try {
-
-
-            const { data, error } = await supabase
+            const { data: productData, error: productError } = await supabase
                 .from('products')
                 .insert([{
                     name: name,
@@ -31,17 +30,38 @@ export default function Example() {
                     quantity_poltava: parseInt(quantityPoltava),
                     quantitiy_hristo_botev: parseInt(quantityHristoBotev)
                 }])
-                .select(); // optional: only if you want to fetch inserted rows
+                .select();
 
-            if (error) {
-                console.error('Insert error:', error);
-            } else {
-                console.log('Inserted data:', data);
+            if (productError) {
+                console.error('Insert product error:', productError);
+                return;
             }
-        }
 
-        catch (err) {
-            console.error('Adding product error:', err);
+            const { data: historyData, error: historyError } = await supabase
+                .from('history')
+                .insert([{
+                    type_of_message: 'Adding product',
+                    specific_information: name
+                }])
+                .select();
+
+            if (historyError) {
+                console.error('Insert history error:', historyError);
+            } else {
+                console.log('Product added and history logged successfully:', {
+                    productData,
+                    historyData
+                });
+
+                // Clear form if needed:
+                setName('');
+                setPrice('');
+                setQuantityPoltava('');
+                setQuantityHristoBotev('');
+                setType('');
+            }
+        } catch (err) {
+            console.error('Unexpected error:', err);
         }
     }
 
