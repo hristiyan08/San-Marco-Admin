@@ -3,11 +3,28 @@ import Layout_template from "@/app/Layout_template";
 import config from "@/app/data/profileConfig.json";
 import {useEffect, useState} from "react";
 import { getProducts} from "@/app/data/DataInfo";
+import { useRef } from 'react';
 import PasswordRecoveryHandler from "@/app/profiles/passwordReset";
 const productPrompts = config.productPrompts;
 const productKeys = config.productKeys;
 export default function Products() {
     const [products, setProducts] = useState<any[]>([]);
+
+    const tableRef = useRef(null);
+    const handleDownload = async () => {
+        if (tableRef.current) {
+            const html2pdf = (await import('html2pdf.js')).default;
+            html2pdf()
+                .set({
+                    margin: 10,
+                    filename: 'table.pdf',
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                })
+                .from(tableRef.current)
+                .save();
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +37,7 @@ export default function Products() {
 
     const OpenMagicLink = (urlAddressToOpen) => {
         const width = 500;
-        const height = 600;
+        const height = 700;
         const left = window.screenX + (window.innerWidth - width) / 2;
         const top = window.screenY + (window.innerHeight - height) / 2;
 
@@ -44,7 +61,7 @@ export default function Products() {
                         } else if (value === 'transfer') {
                             alert('Трансфер на продукт'); // или каквото искаш
                         } else if (value === 'stats') {
-                            alert('Статистика'); // или друг линк
+                            handleDownload();
                         }
                     }}
                 >
@@ -58,7 +75,7 @@ export default function Products() {
             <h1 className="text-2xl font-semibold">Таблица с налични продукти</h1>
 
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-10">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-10" ref={tableRef}>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

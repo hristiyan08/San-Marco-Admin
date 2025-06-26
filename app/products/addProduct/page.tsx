@@ -1,5 +1,4 @@
 'use client'
-import { signup } from "@/app/login/actions";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useState, useEffect } from "react";
@@ -7,27 +6,30 @@ import { createClient } from "@/utils/supabase/client";
 
 export default function Example() {
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [price, setPrice] = useState('');
+    const [quantityPoltava, setQuantityPoltava] = useState('');
+    const [quantityHristoBotev, setQuantityHristoBotev] = useState('');
 
-    const [location, setLocation] = useState("");
+    const [type, setType] = useState("");
 
     const handleChange = (event) => {
-        setLocation(event.target.value);
+        setType(event.target.value);
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
         const supabase = createClient();
         try {
-            // assuming signup is async
+
 
             const { data, error } = await supabase
-                .from('profiles')
+                .from('products')
                 .insert([{
                     name: name,
-                    email: email,
-                    location: location
+                    single_price: parseFloat(price),
+                    type: type,
+                    quantity_poltava: parseInt(quantityPoltava),
+                    quantitiy_hristo_botev: parseInt(quantityHristoBotev)
                 }])
                 .select(); // optional: only if you want to fetch inserted rows
 
@@ -36,20 +38,24 @@ export default function Example() {
             } else {
                 console.log('Inserted data:', data);
             }
-            await signup(email, password);
-        } catch (err) {
-            console.error('Signup or DB error:', err);
+        }
+
+        catch (err) {
+            console.error('Adding product error:', err);
         }
     }
 
     const handleName = (event) => {
         setName(event.target.value);
     }
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
+    const handleQuantityHristoBotev = (event) => {
+        setQuantityHristoBotev(event.target.value);
     }
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
+    const handleQuantityPoltava = (event) => {
+        setQuantityPoltava(event.target.value);
+    }
+    const handlePrice = (event) => {
+        setPrice(event.target.value);
     }
 
 
@@ -86,27 +92,26 @@ export default function Example() {
                                 Категория продукт
                             </label>
                             <div className="mt-2">
-                                <select required onChange={handleChange} value={location} className="block w-full rounded-md text-base border-1 text-gray-900 border-gray-300 px-3 py-1.5 bg-white focus:outline-2 focus:-outline-offset-2 outline-gray-300 focus:outline-indigo-600">
+                                <select required onChange={handleChange} value={type} className="block w-full rounded-md text-base border-1 text-gray-900 border-gray-300 px-3 py-1.5 bg-white focus:outline-2 focus:-outline-offset-2 outline-gray-300 focus:outline-indigo-600">
                                     <option value="">Моля, изберете категория</option>
-                                    <option value="Полтава 3Б">Боя</option>
-                                    <option value="Полтава 3Б">Мазилка</option>
-                                    <option value="Полтава 3Б">Грунд</option>
-                                    <option value="Христо Ботев 64">Фасада</option>
-                                    <option value="Христо Ботев 64">Инструменти</option>
+                                    <option value="Боя">Боя</option>
+                                    <option value="Мазилка">Мазилка</option>
+                                    <option value="Грунд">Грунд</option>
+                                    <option value="Фасада">Фасада</option>
+                                    <option value="Инструменти">Инструменти</option>
                                 </select>
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-900">
-                                Имейл адрес
+                            <label htmlFor="price" className="block text-sm font-medium text-gray-900">
+                                Цена (в евро):
                             </label>
                             <div className="mt-2">
                                 <input
-                                    value={email}
-                                    onChange={handleEmail}
-                                    id="email"
-                                    name="email"
-                                    type="email"
+                                    value={price}
+                                    onChange={handlePrice}
+                                    id="price"
+                                    name="price"
                                     required
                                     autoComplete="email"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
@@ -116,19 +121,33 @@ export default function Example() {
 
                         <div>
                             <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-                                    Парола
+                                <label htmlFor="quantity_hristo_botev" className="block text-sm font-medium text-gray-900">
+                                    Количество - Христо Ботев
                                 </label>
                             </div>
                             <div className="mt-2">
                                 <input
-                                    value={password}
-                                    onChange={handlePassword}
-                                    id="password"
-                                    name="password"
-                                    type="password"
+                                    value={quantityHristoBotev}
+                                    onChange={handleQuantityHristoBotev}
+                                    id="quantity_hristo_botev"
+                                    name="quantity_hristo_botev"
                                     required
-                                    autoComplete="current-password"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+                                />
+                            </div>
+                        </div><div>
+                            <div className="flex items-center justify-between">
+                                <label htmlFor="quantityPoltava" className="block text-sm font-medium text-gray-900">
+                                    Количество - Полтава
+                                </label>
+                            </div>
+                            <div className="mt-2">
+                                <input
+                                    value={quantityPoltava}
+                                    onChange={handleQuantityPoltava}
+                                    id="quantityPoltava"
+                                    name="quantityPoltava"
+                                    required
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                                 />
                             </div>
@@ -138,7 +157,7 @@ export default function Example() {
                             <button
                                 className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Вход
+                                Добавяне на продукт
                             </button>
                         </div>
                     </form>
