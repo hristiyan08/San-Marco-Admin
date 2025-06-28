@@ -50,3 +50,19 @@ export async function getProducts(){
 
     return data;
 }
+export async function getHistory(){
+
+
+    const { data, error } = await supabase
+        .from('history')
+        .select('*')
+
+    if (error) {
+        console.error('Грешка при извличане на профили:', error.message);
+        return [];
+    }
+
+
+
+    return data;
+}

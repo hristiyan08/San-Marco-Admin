@@ -42,7 +42,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                     <div className="flex h-20 items-center justify-between pt-2">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                                <h1 className="text-white text-3xl font-bold cursor-pointer" onClick={() => window.location.href='..'}>San Marco</h1>
+                                <h1 className="text-white text-3xl font-bold cursor-pointer" onClick={() => window.location.href='..'}>San Marco VT</h1>
                             </div>
                             <div className="hidden md:block">
                                 <div className="ml-60 flex items-baseline space-x-4">
@@ -66,6 +66,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                             <div className="ml-4 flex items-center md:ml-6">
                                 <button
                                     type="button"
+                                    onClick={()=> window.location.href='/history'}
                                     className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
                                 >
                                     <span className="absolute -inset-1.5" />
@@ -177,7 +178,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
                         <div className="max-w-xl lg:max-w-lg">
-                            <h2 className="text-4xl font-bold tracking-tight text-white ">San Marco</h2>
+                            <h2 className="text-4xl font-bold tracking-tight text-white ">San Marco VT</h2>
                             <p className="mt-4 text-lg text-gray-300">
                                 Админ система за направа на стокови разписки и фактури, управление на складова програма.
                             </p>
