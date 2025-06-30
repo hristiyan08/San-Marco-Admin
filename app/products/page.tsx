@@ -10,8 +10,6 @@ const productKeys = config.productKeys;
 export default function Products() {
     const [products, setProducts] = useState<any[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,17 +38,10 @@ export default function Products() {
          product.id?.toString().includes(searchQuery)
     );
 
-    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-    const paginatedProducts = filteredProducts.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
 
-    const handlePageChange = (newPage: number) => {
-        if (newPage >= 1 && newPage <= totalPages) {
-            setCurrentPage(newPage);
-        }
-    };
+    const sortedProducts = filteredProducts.slice().sort((a, b) => a.id - b.id);
+
+
 
     return (
         <Layout_template title="Продукти">
@@ -63,7 +54,6 @@ export default function Products() {
                     value={searchQuery}
                     onChange={(e) => {
                         setSearchQuery(e.target.value);
-                        setCurrentPage(1); // Reset to page 1 when search changes
                     }}
                 />
 
@@ -102,7 +92,7 @@ export default function Products() {
                     </tr>
                     </thead>
                     <tbody>
-                    {paginatedProducts.map((product, index) => (
+                    {sortedProducts.map((product, index) => (
                         <tr key={index} className="hover:bg-slate-50">
                             {productKeys.map((key) => (
                                 <td key={key} className="px-6 py-4">
@@ -115,24 +105,7 @@ export default function Products() {
                 </table>
             </div>
 
-            {/* Pagination Controls */}
-            <div className="flex justify-center items-center gap-4 mb-10">
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    className="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
-                    disabled={currentPage === 1}
-                >
-                    Назад
-                </button>
-                <span>Страница {currentPage} от {totalPages}</span>
-                <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    className="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
-                    disabled={currentPage === totalPages}
-                >
-                    Напред
-                </button>
-            </div>
+
         </Layout_template>
     );
 }

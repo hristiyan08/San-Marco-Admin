@@ -1,57 +1,87 @@
-'use client'
+'use client';
 import Layout_template from "@/app/Layout_template";
-import config from "@/app/data/profileConfig.json";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { getHistory } from "@/app/data/DataInfo";
 
 export default function History() {
-    const [history, setHistory] = useState(null);
+    const [history, setHistory] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
     useEffect(() => {
         async function fetchData() {
-            const data = await getHistory(); // ако е async
+            const data = await getHistory();
             setHistory(data);
         }
-
         fetchData();
     }, []);
 
-    if (!history) {
-        return <p>Зареждане...</p>; // показва се докато се зарежда историята
+    if (!history || history.length === 0) {
+        return <p>Зареждане...</p>;
     }
 
+    // Пагинирани записи
+    const totalPages = Math.ceil(history.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedHistory = history.slice(startIndex, startIndex + itemsPerPage);
+
     return (
-        <Layout_template title="Продукти">
+        <Layout_template title="История">
             <h1 className="text-2xl font-semibold">Таблица с история</h1>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-10">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-900">
                     <tr>
                         <th className="px-6 py-3 text-gray-200">Съобщение</th>
                         <th className="px-6 py-3 text-gray-200">Дата</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    {history.map((entry, index) => (
-                        entry.type_of_message === 'Adding product' ? ( // твоята проверка
-                            <tr key={index} className="">
-                                <td className="px-6 py-4  ">
-                                    Добавен е продукт "{entry.specific_information}"
-                                </td>
-                                <td className="px-6 py-4">
-                                    {entry.created_at.substring(0, 10)}
-                                </td>
-                            </tr>
-                        ) : (
+                    <tbody className="text-black">
+                    {paginatedHistory.map((entry, index) => {
+                        let message = "";
+
+                        if (entry.type_of_message === 'Adding product') {
+                            message = `Добавен е продукт "${entry.specific_information}"`;
+                        } else if (entry.type_of_message === 'Transfering Product') {
+                            const parts = entry.specific_information.split(",");
+                            const productId = parts[1]?.trim();
+                            const productLocation = parts[0]?.trim();
+                            message = `Продукт с ID ${productId} е трансфериран на ${productLocation}`;
+                        } else {
+                            message = entry.specific_information || "Няма информация";
+                        }
+
+                        return (
                             <tr key={index}>
-                                <td className="px-6 py-4">{entry.name}</td>
-                                <td className="px-6 py-4">{entry.created_at}</td>
+                                <td className="px-6 py-4">{message}</td>
+                                <td className="px-6 py-4">{entry.created_at?.substring(0, 10)}</td>
                             </tr>
-                        )
-                    ))}
+                        );
+                    })}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Пагинация */}
+            <div className="flex justify-center items-center gap-4 mb-10">
+                <button
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
+                >
+                    Назад
+                </button>
+
+                <span>Страница {currentPage} от {totalPages}</span>
+
+                <button
+                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
+                >
+                    Напред
+                </button>
             </div>
         </Layout_template>
     );
