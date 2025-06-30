@@ -68,7 +68,7 @@ export default function Products() {
                             OpenMagicLink('../products/transferProduct');
                         }
                         else if (value === 'addToStore') {
-                            OpenMagicLink('../products/storeProduct');
+                            OpenMagicLink('../products/addingProductQuantity');
                         }
                     }}
                 >

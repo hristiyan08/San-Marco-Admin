@@ -40,16 +40,25 @@ export default function History() {
                     <tbody className="text-black">
                     {paginatedHistory.map((entry, index) => {
                         let message = "";
+                        let productDetails;
+                        function productInformation(){
+                            const parts = entry.specific_information.split(",");
+                            const productId = parts[1]?.trim();
+                            const productLocation = parts[0]?.trim();
+                            const productQuantity = parts[2]?.trim();
+                            productDetails = [productId, productLocation, productQuantity];
+                            return productDetails;
+                        }
 
                         if (entry.type_of_message === 'Adding product') {
                             message = `Добавен е продукт "${entry.specific_information}"`;
                         } else if (entry.type_of_message === 'Transfering Product') {
-                            const parts = entry.specific_information.split(",");
-                            const productId = parts[1]?.trim();
-                            const productLocation = parts[0]?.trim();
-                            message = `Продукт с ID ${productId} е трансфериран на ${productLocation}`;
-                        } else {
-                            message = entry.specific_information || "Няма информация";
+                            const data = productInformation();
+                            message = `Продукт с ID ${data[0]} е трансфериран на ${data[1]} с количество ${data[2]}`;
+                        }
+                        else if (entry.type_of_message === 'Adding quantity of product') {
+                            const data = productInformation();
+                            message = `Продукт с ID ${data[0]} е добавен като стока на ${data[1]} с количество ${data[2]}`;
                         }
 
                         return (
