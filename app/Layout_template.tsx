@@ -139,6 +139,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                             </div>
                             <button
                                 type="button"
+                                onClick={()=> window.location.href='/history'}
                                 className="relative ml-auto shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
                             >
                                 <span className="absolute -inset-1.5" />

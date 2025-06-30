@@ -40,7 +40,7 @@ export default function History() {
                                     Добавен е продукт "{entry.specific_information}"
                                 </td>
                                 <td className="px-6 py-4">
-                                    {entry.created_at}
+                                    {entry.created_at.substring(0, 10)}
                                 </td>
                             </tr>
                         ) : (

@@ -99,14 +99,14 @@ export default function Example() {
                         e.preventDefault();
                         await handleSubmitMessage(e);
                     }}>
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-900">
-                                Име на продукт
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    onChange={handleName}
-                                    value={name}
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-900">
+                                    Име на продукт
+                                </label>
+                                <div className="mt-2">
+                                    <input
+                                        onChange={handleName}
+                                        value={name}
                                     id="name"
                                     name="name"
                                     type="text"
