@@ -38,7 +38,7 @@ const userNavigation = [
     { name: 'Sign out', href: '../signout' },
 ]
 
-function classNames(...classes: (string | boolean | undefined | null)[]): string {
+function classNames(...classes: (string | false | null | undefined)[]): string {
     return classes.filter(Boolean).join(' ')
 }
 
