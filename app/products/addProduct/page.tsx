@@ -12,11 +12,11 @@ export default function Example() {
 
     const [type, setType] = useState("");
 
-    const handleChange = (event) => {
+    const handleChange = (event:any) => {
         setType(event.target.value);
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e:any) {
         e.preventDefault();
         const supabase = createClient();
 
@@ -65,16 +65,16 @@ export default function Example() {
         }
     }
 
-    const handleName = (event) => {
+    const handleName = (event:any) => {
         setName(event.target.value);
     }
-    const handleQuantityHristoBotev = (event) => {
+    const handleQuantityHristoBotev = (event:any) => {
         setQuantityHristoBotev(event.target.value);
     }
-    const handleQuantityPoltava = (event) => {
+    const handleQuantityPoltava = (event:any) => {
         setQuantityPoltava(event.target.value);
     }
-    const handlePrice = (event) => {
+    const handlePrice = (event:any) => {
         setPrice(event.target.value);
     }
 
