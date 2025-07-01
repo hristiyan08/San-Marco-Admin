@@ -25,11 +25,9 @@ const userNavigation = [
     { name: 'Sign out', href: '../signout' },
 
 ]
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+function classNames(...classes: (string | boolean | undefined | null)[]): string {
+    return classes.filter(Boolean).join(' ');
 }
-
 
 
 const userData = await getCurrentProfileInformation();
