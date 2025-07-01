@@ -38,8 +38,13 @@ const userNavigation = [
     { name: 'Settings', href: '#' },
     { name: 'Sign out', href: '../signout' },
 ]
+type LayoutProps = {
+    children: React.ReactNode
+    title: string
+}
 
 export default function Layout_template({ children, title }: LayoutProps) {
+
     const [location, setLocation] = useState('')
 
     useEffect(() => {
