@@ -22,7 +22,8 @@ import { getCurrentProfileInformation } from '../app/data/DataInfo'
 const user = {
     name: 'Tom Cook',
     email: 'tom@example.com',
-    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    imageUrl:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 
 const navigation = [
@@ -38,9 +39,6 @@ const userNavigation = [
     { name: 'Sign out', href: '../signout' },
 ]
 
-function classNames(...classes: (string | boolean | null | undefined)[]): string {
-    return classes.filter(Boolean).join(' ')
-}
 export default function Layout_template({ children, title }: LayoutProps) {
     const [location, setLocation] = useState('')
 
@@ -59,7 +57,12 @@ export default function Layout_template({ children, title }: LayoutProps) {
                     <div className="flex h-20 items-center justify-between pt-2">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                                <h1 className="text-white text-3xl font-bold cursor-pointer" onClick={() => window.location.href = '..'}>San Marco VT</h1>
+                                <h1
+                                    className="text-white text-3xl font-bold cursor-pointer"
+                                    onClick={() => (window.location.href = '..')}
+                                >
+                                    San Marco VT
+                                </h1>
                             </div>
                             <div className="hidden md:block">
                                 <div className="ml-60 flex items-baseline space-x-4">
@@ -67,10 +70,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                                         <a
                                             key={item.name}
                                             href={item.href}
-                                            className={classNames(
-                                                'text-gray-300 hover:bg-gray-800 hover:text-white',
-                                                'rounded-md px-3 py-2 text-md font-medium'
-                                            )}
+                                            className="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-md font-medium"
                                         >
                                             {item.name}
                                         </a>
@@ -82,7 +82,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                             <div className="ml-4 flex items-center md:ml-6">
                                 <button
                                     type="button"
-                                    onClick={() => window.location.href = '/history'}
+                                    onClick={() => (window.location.href = '/history')}
                                     className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                 >
                                     <BellIcon className="size-6" aria-hidden="true" />
@@ -91,7 +91,11 @@ export default function Layout_template({ children, title }: LayoutProps) {
                                 <Menu as="div" className="relative ml-3">
                                     <div>
                                         <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                            <img className="size-8 rounded-full" src={user.imageUrl} alt="" />
+                                            <img
+                                                className="size-8 rounded-full"
+                                                src={user.imageUrl}
+                                                alt=""
+                                            />
                                         </MenuButton>
                                     </div>
                                     <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 ring-black/5 shadow-lg">
@@ -140,7 +144,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
                             </div>
                             <button
                                 type="button"
-                                onClick={() => window.location.href = '/history'}
+                                onClick={() => (window.location.href = '/history')}
                                 className="ml-auto shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white"
                             >
                                 <BellIcon className="size-6" aria-hidden="true" />
@@ -170,9 +174,7 @@ export default function Layout_template({ children, title }: LayoutProps) {
             </header>
 
             <main>
-                <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    {children}
-                </div>
+                <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{children}</div>
             </main>
 
             {/* Newsletter Section */}
@@ -180,34 +182,52 @@ export default function Layout_template({ children, title }: LayoutProps) {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
                         <div className="max-w-xl lg:max-w-lg">
-                            <h2 className="text-4xl font-bold tracking-tight text-white ">San Marco VT</h2>
+                            <h2 className="text-4xl font-bold tracking-tight text-white ">
+                                San Marco VT
+                            </h2>
                             <p className="mt-4 text-lg text-gray-300">
-                                Админ система за направа на стокови разписки и фактури, управление на складова програма.
+                                Админ система за направа на стокови разписки и фактури, управление
+                                на складова програма.
                             </p>
                         </div>
                         <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
                             <div className="flex flex-col items-start">
                                 <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                                    <DocumentTextIcon className="size-6 text-white" aria-hidden="true" />
+                                    <DocumentTextIcon
+                                        className="size-6 text-white"
+                                        aria-hidden="true"
+                                    />
                                 </div>
-                                <dt className="mt-4 text-base font-semibold text-white">Стокова разпизка</dt>
+                                <dt className="mt-4 text-base font-semibold text-white">
+                                    Стокова разпизка
+                                </dt>
                                 <dd className="mt-2 text-base text-gray-400">
-                                    За да направите стокова разписка отивате на дадения раздел и избирате "Добавяне на нова".
+                                    За да направите стокова разписка отивате на дадения раздел и
+                                    избирате "Добавяне на нова".
                                 </dd>
                             </div>
                             <div className="flex flex-col items-start">
                                 <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                                    <ArchiveBoxIcon className="size-6 text-white" aria-hidden="true" />
+                                    <ArchiveBoxIcon
+                                        className="size-6 text-white"
+                                        aria-hidden="true"
+                                    />
                                 </div>
-                                <dt className="mt-4 text-base font-semibold text-white">Складова програма</dt>
+                                <dt className="mt-4 text-base font-semibold text-white">
+                                    Складова програма
+                                </dt>
                                 <dd className="mt-2 text-base text-gray-400">
-                                    Можете да добавяте нови продукти и да ги редактирате от дадения раздел. Цените също се редактират от там.
+                                    Можете да добавяте нови продукти и да ги редактирате от дадения
+                                    раздел. Цените също се редактират от там.
                                 </dd>
                             </div>
                         </dl>
                     </div>
                 </div>
-                <div aria-hidden="true" className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl xl:-top-6">
+                <div
+                    aria-hidden="true"
+                    className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
+                >
                     <div
                         className="aspect-1155/678 w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
                         style={{
