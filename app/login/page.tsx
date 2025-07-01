@@ -16,6 +16,9 @@ export default function Example() {
                     <h2 className="mt-5 text-center text-4xl/9 font-bold tracking-tight text-gray-900">
                         San Marco VT
                     </h2>
+                    <h2 className="mt-5 text-center text-4xl/9 font-bold tracking-tight text-gray-900">
+                        Админ система
+                    </h2>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
