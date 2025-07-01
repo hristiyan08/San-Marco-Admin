@@ -38,10 +38,9 @@ const userNavigation = [
     { name: 'Sign out', href: '../signout' },
 ]
 
-function classNames(...classes: (string | false | null | undefined)[]): string {
+function classNames(...classes: (string | boolean | null | undefined)[]): string {
     return classes.filter(Boolean).join(' ')
 }
-
 export default function Layout_template({ children, title }: LayoutProps) {
     const [location, setLocation] = useState('')
 
