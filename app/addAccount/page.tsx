@@ -12,11 +12,11 @@ export default function Example() {
 
     const [location, setLocation] = useState("");
 
-    const handleChange = (event) => {
+    const handleChange = (event:any) => {
         setLocation(event.target.value);
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e:any) {
         e.preventDefault();
         const supabase = createClient();
         try {
@@ -42,13 +42,13 @@ export default function Example() {
         }
     }
 
-    const handleName = (event) => {
+    const handleName = (event:any) => {
         setName(event.target.value);
     }
-    const handlePassword = (event) => {
+    const handlePassword = (event:any) => {
         setPassword(event.target.value);
     }
-    const handleEmail = (event) => {
+    const handleEmail = (event:any) => {
         setEmail(event.target.value);
     }
 
