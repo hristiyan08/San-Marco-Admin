@@ -10,11 +10,11 @@ export default function Example() {
 
     const [location, setLocation] = useState("");
 
-    const handleChange = (event) => {
+    const handleChange = (event:any) => {
         setLocation(event.target.value);
     }
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e:any) {
         e.preventDefault();
         const supabase = createClient();
 
@@ -69,7 +69,7 @@ export default function Example() {
             console.error('Грешка при обработка на трансфер:', err);
         }
     }
-    async function handleSubmitMessage(e) {
+    async function handleSubmitMessage(e:any) {
         e.preventDefault();
         const supabase = createClient();
         try {
@@ -99,11 +99,11 @@ export default function Example() {
         }
     }
 
-    const  handleId = (event) => {
+    const  handleId = (event:any) => {
         setProductId(event.target.value);
     }
 
-    const  handleQuantity = (event) => {
+    const  handleQuantity = (event:any) => {
         setQuantity(event.target.value);
     }
 
