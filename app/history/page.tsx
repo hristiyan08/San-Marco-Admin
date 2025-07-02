@@ -11,6 +11,7 @@ export default function History() {
     useEffect(() => {
         async function fetchData() {
             const data = await getHistory();
+            // @ts-ignore
             setHistory(data);
         }
         fetchData();
