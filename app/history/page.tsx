@@ -43,6 +43,7 @@ export default function History() {
                         let message = "";
                         let productDetails;
                         function productInformation(){
+                            // @ts-ignore
                             const parts = entry.specific_information.split(",");
                             const productId = parts[1]?.trim();
                             const productLocation = parts[0]?.trim();
@@ -51,20 +52,26 @@ export default function History() {
                             return productDetails;
                         }
 
+                        // @ts-ignore
                         if (entry.type_of_message === 'Adding product') {
+                            // @ts-ignore
                             message = `Добавен е продукт "${entry.specific_information}"`;
+                            // @ts-ignore
                         } else if (entry.type_of_message === 'Transfering Product') {
                             const data = productInformation();
                             message = `Продукт с ID ${data[0]} е трансфериран на ${data[1]} с количество ${data[2]}`;
                         }
+                        // @ts-ignore
                         else if (entry.type_of_message === 'Adding quantity of product') {
                             const data = productInformation();
                             message = `Продукт с ID ${data[0]} е добавен като стока на ${data[1]} с количество ${data[2]}`;
                         }
 
+                        // @ts-ignore
                         return (
                             <tr key={index}>
                                 <td className="px-6 py-4">{message}</td>
+
                                 <td className="px-6 py-4">{entry.created_at?.substring(0, 10)}</td>
                             </tr>
                         );
