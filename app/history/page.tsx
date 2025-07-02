@@ -68,11 +68,13 @@ export default function History() {
                         }
 
                         // @ts-ignore
+                        const createdAt = entry.created_at;
+                        // @ts-ignore
                         return (
                             <tr key={index}>
                                 <td className="px-6 py-4">{message}</td>
 
-                                <td className="px-6 py-4">{entry.created_at?.substring(0, 10)}</td>
+                                <td className="px-6 py-4">{createdAt.substring(0, 10)}</td>
                             </tr>
                         );
                     })}
