@@ -14,9 +14,9 @@ export default async function ResetPassword (formData: FormData) {
     if (!newPassword) {
         redirect('/error')  // Ако паролата не е предоставена, редиректираме към страница с грешка
     }
-
+// @ts-ignore
     // Актуализираме паролата чрез Supabase
-    const { user, error } = await supabase.auth.updateUser({
+    const {user, error } = await supabase.auth.updateUser({
         password: newPassword,
     })
 
