@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    // други опции, ако имаш, но без output: 'export'
+    reactStrictMode: true,
+    // ... други настройки по желание
 };
 
 export default nextConfig;
